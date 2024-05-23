@@ -10,19 +10,26 @@ class Numbers {
     fs.truncateSync("phone.JSON");
   }
 
+  private async getNumber(){
+
+    const phoneNumberLink = await $('dl.js-phone-number a');
+
+    const phoneNumberHref = await phoneNumberLink.getAttribute('href');
+
+    return phoneNumberHref;
+  }
+  
+  private async getClick(){
+    return $(".js-phone-number-show");
+  }
+
   async insertJson() {
     await this.truncateJSON();
+    (await this.getClick()).click();
 
-    const span_numbers = await this.getAllArticles();
-    const numberArray: string[] = [];
+    const number = await this.getNumber();
 
-    for (const number of span_numbers) {
-      const numberExtract = await number.getText();
-      numberArray.push(numberExtract);
-    }
-
-    const phoneNumbers = [{ phone: numberArray }];
-    fs.writeFileSync("phone.JSON", JSON.stringify(phoneNumbers));
+    fs.writeFileSync("phone.JSON", JSON.stringify(number));
   }
 }
 

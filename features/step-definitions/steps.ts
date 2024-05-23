@@ -3,6 +3,7 @@ import { expect } from "@wdio/globals";
 
 import SearchPage from "../pageobjects/seach.page.js";
 import Numbers from "../pageobjects/manageJSON.js";
+import Articles from "../pageobjects/product.page.js"
 
 const pages = {
   searcher: SearchPage,
@@ -27,6 +28,14 @@ When(/^I search for (.+)$/, async (searchTerm) => {
   await SearchPage.search(searchTerm);
 });
 
-Then(/^I should see the result in the json file$/, async () => {
+Then(/^I should get redirected to another page after selecting the product$/, async () => {
+  await Articles.loadArticle();
+
+  const value = await Articles.expectRedirecting();
+  expect(value).toEqual(true);
+
+});
+
+Then(/^I should see the result in the json file$/, async() => {
   await Numbers.insertJson();
 });

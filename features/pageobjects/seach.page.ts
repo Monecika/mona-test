@@ -3,7 +3,7 @@ import Page from "./page.js";
 
 class SearchPage extends Page {
   public get searchField() {
-    return $("#header_searchField");
+    return $("#js-search-input");
   }
 
   public get btnSubmit() {
