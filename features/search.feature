@@ -1,6 +1,6 @@
-Feature: The Internet Guinea Pig Website
+Feature: Skoda search
 
-  Scenario Outline: As a user, I can log into the secure area
+  Scenario Outline: As a skoda lover, i wanna search for a skoda
     Given I am on the <main> page
     When I search for <search>
     Then I should get redirected to another page after selecting the product
